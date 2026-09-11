@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Inter } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
+const display = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-bricolage",
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 const inter = Inter({
@@ -26,7 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es-AR" className={`${bricolage.variable} ${inter.variable}`}>
+    <html lang="es-AR" className={`${display.variable} ${inter.variable}`}>
+      <body>{children}</body>
+    </html>
+  );
+}variable} ${inter.variable}`}>
       <body>{children}</body>
     </html>
   );
