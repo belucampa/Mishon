@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-
+import CoffeeQuiz from "./components/CoffeeQuiz"
 const TIENDA = [
   {
     nombre: "Inicio",
