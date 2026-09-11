@@ -68,7 +68,7 @@ const RESULTADOS: Record<
   origen: {
     titulo: "Origen único",
     desc: "Buscás algo con carácter, no lo de siempre.",
-    clase: "bg-azul text-mostaza border-mostaza",
+    clase: "bg-azul text-crema border-crema",
   },
 };
 
