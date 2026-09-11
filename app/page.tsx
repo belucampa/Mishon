@@ -116,7 +116,7 @@ export default function Home() {
 
       {/* Sección Mona */}
       <section className="bg-tomate text-crema px-6 md:px-14 py-16">
-        <p className="text-xs font-bold tracking-widest uppercase mb-6">
+        <p className="font-wordmark text-2xl tracking-wide uppercase mb-6">
           Molida
         </p>
         <div className="grid md:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
