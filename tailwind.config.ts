@@ -10,6 +10,7 @@ const config: Config = {
         tomate: "#E24B4A",
         mostaza: "#EF9F27",
         negro: "#1A1A1A",
+        azul: "#3E4C59",
       },
       fontFamily: {
         display: ["var(--font-bricolage)", "sans-serif"],
