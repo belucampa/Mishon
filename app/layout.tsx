@@ -30,8 +30,4 @@ export default function RootLayout({
       <body>{children}</body>
     </html>
   );
-}variable} ${inter.variable}`}>
-      <body>{children}</body>
-    </html>
-  );
 }
