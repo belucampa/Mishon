@@ -17,7 +17,7 @@ const TIENDA = [
   {
     nombre: "Origen único",
     desc: "Un solo origen, perfil bien marcado.",
-    clase: "bg-azul text-mostaza border-mostaza",
+    clase: "bg-azul text-crema border-crema",
   },
 ];
 
