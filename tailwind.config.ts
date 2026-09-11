@@ -13,7 +13,7 @@ const config: Config = {
         azul: "#3E4C59",
       },
       fontFamily: {
-        display: ["var(--font-bricolage)", "sans-serif"],
+        display: ["var(--font-display)", "serif"],
         body: ["var(--font-inter)", "sans-serif"],
       },
     },
