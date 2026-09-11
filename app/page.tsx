@@ -7,7 +7,7 @@ const TIENDA = [
   {
     nombre: "Café molido",
     desc: "Para cafetera, prensa francesa, lo que tengas.",
-    clase: "bg-lima text-negro border-negro",
+    clase: "bg-lima text-negro border-crema",
   },
   {
     nombre: "Café en grano",
