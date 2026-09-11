@@ -149,6 +149,8 @@ export default function Home() {
         </div>
       </section>
 
+      <CoffeeQuiz />
+      
       <footer>
         <span className="wordmark">Molida</span>
         <span>Café de especialidad — próximamente.</span>
