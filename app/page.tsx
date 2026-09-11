@@ -7,7 +7,7 @@ const TIENDA = [
   {
     nombre: "Café molido",
     desc: "Para cafetera, prensa francesa, lo que tengas.",
-    clase: "bg-lima text-negro border-crema",
+    clase: "bg-lima text-negro border-negro",
   },
   {
     nombre: "Café en grano",
@@ -61,7 +61,7 @@ export default function Home() {
     <>
       {/* Header */}
       <header className="flex items-center justify-between px-6 md:px-14 py-7">
-        <span className="font-display font-extrabold text-xl">Molida</span>
+        <span className="font-wordmark text-2xl">Molida</span>
         <nav>
           <a
             href="#tienda"
@@ -99,7 +99,7 @@ export default function Home() {
             />
             <button
               type="submit"
-              className="px-6 py-3 rounded-full border-2 border-negro bg-tomate text-crema font-bold hover:bg-negro transition-colors"
+              className="px-6 py-3 rounded-full border-2 border-negro bg-tomate text-crema font-button font-bold hover:bg-negro transition-colors"
             >
               Avisame primero
             </button>
@@ -204,7 +204,7 @@ export default function Home() {
       </section>
 
       <footer className="bg-negro text-crema px-6 md:px-14 py-8 flex flex-wrap justify-between gap-3 text-sm">
-        <span className="font-display font-extrabold">Molida</span>
+        <span className="font-wordmark text-xl">Molida</span>
         <span>Café de especialidad — próximamente.</span>
       </footer>
     </>
