@@ -30,7 +30,7 @@ function Estrella({ className = "" }: { className?: string }) {
       viewBox="0 0 120 120"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      aria-label="Estrella mascota de Molida, con cara de pocos amigos"
+      aria-label="Logo de Mishón"
     >
       <polygon
         points="60,6 74,42 112,42 81,64 93,102 60,79 27,102 39,64 8,42 46,42"
@@ -61,7 +61,7 @@ export default function Home() {
     <>
       {/* Header */}
       <header className="flex items-center justify-between px-6 md:px-14 py-7">
-        <span className="font-wordmark text-2xl">Molida</span>
+        <span className="font-wordmark text-2xl">Mishón</span>
         <nav>
           <a
             href="#tienda"
@@ -76,7 +76,7 @@ export default function Home() {
       <section className="bg-lima px-6 md:px-14 pt-6 pb-16 text-center">
         <Estrella className="w-28 md:w-36 mx-auto animate-wobble" />
         <p className="max-w-xl mx-auto mt-6 text-lg md:text-xl">
-          Molida es café de especialidad argentino, en grano y molido,
+          Mishón es café de especialidad argentino, en grano y molido,
           pensado para la gente que se prepara su café en casa.
         </p>
 
@@ -117,7 +117,7 @@ export default function Home() {
       {/* Sección Mona */}
       <section className="bg-tomate text-crema px-6 md:px-14 py-16">
         <p className="font-wordmark text-2xl tracking-wide uppercase mb-6">
-          Molida
+          Mishón
         </p>
         <div className="grid md:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
           <div className="aspect-[3/4] max-w-[260px] mx-auto w-full rounded-3xl border-2 border-dashed border-crema/60 flex items-center justify-center text-center text-sm text-crema/70 p-6">
@@ -126,7 +126,7 @@ export default function Home() {
             por &lt;Image src=&quot;/mona.png&quot; /&gt;
           </div>
           <h2 className="font-display font-extrabold text-2xl md:text-4xl leading-tight text-left">
-            Molida arranca con dos formatos — molido y en grano — y un solo
+            Mishón arranca con dos formatos — molido y en grano — y un solo
             objetivo: que tomes un café bueno en tu casa, sin vueltas.
           </h2>
         </div>
@@ -192,10 +192,10 @@ export default function Home() {
             Preguntanos lo que quieras
           </h2>
           <a
-            href="mailto:hola@molida.com.ar"
+            href="mailto:hola@mishon.com.ar"
             className="text-tomate font-semibold"
           >
-            hola@molida.com.ar
+            hola@mishon.com.ar
           </a>
           <p className="text-xs text-negro/50 mt-2">
             (mail de ejemplo — reemplazar por el real cuando esté)
@@ -204,7 +204,7 @@ export default function Home() {
       </section>
 
       <footer className="bg-negro text-crema px-6 md:px-14 py-8 flex flex-wrap justify-between gap-3 text-sm">
-        <span className="font-wordmark text-xl">Molida</span>
+        <span className="font-wordmark text-xl">Mishón</span>
         <span>Café de especialidad — próximamente.</span>
       </footer>
     </>
