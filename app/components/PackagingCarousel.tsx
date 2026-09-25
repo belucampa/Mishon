@@ -4,34 +4,48 @@ import { useEffect, useState } from "react";
 
 const INTERVALO_MS = 4000;
 
-// Cuando estén las fotos reales del packaging, ponelas en /public
-// y cargá la ruta en "foto" (por ejemplo "/packaging-molido.jpg").
-const SLIDES: {
-  nombre: string;
-  desc: string;
-  fondo: string;
-  gato: string;
-  foto?: string;
-}[] = [
+const SLIDES = [
   {
     nombre: "Molido",
-    desc: "Molido a pedido para tu cafetera.",
+    desc: "Nos decís qué cafetera usás y lo molemos a pedido.",
     fondo: "bg-verde",
-    gato: "/gatotaza-negro.png",
+    sticker: "/packaging/molido.png",
   },
   {
     nombre: "En grano",
     desc: "Lo molés vos, al toque, como más te guste.",
     fondo: "bg-rojo",
-    gato: "/gatotaza-crema.png",
+    sticker: "/packaging/en-grano.png",
   },
   {
     nombre: "Origen único",
     desc: "Un solo origen, perfil bien marcado.",
     fondo: "bg-mostaza",
-    gato: "/gatotaza-amarillo.png",
+    sticker: "/packaging/origen-unico.png",
   },
 ];
+
+// Bolsa negra con cierre zip y el sticker pegado adelante.
+function Bolsa({ sticker, nombre }: { sticker: string; nombre: string }) {
+  return (
+    <div className="relative w-48 md:w-60 aspect-[3/4.2] rounded-t-2xl rounded-b-[2rem] bg-[#141414] shadow-[0_24px_40px_-12px_rgba(0,0,0,0.55)] overflow-hidden">
+      {/* Sellado de arriba */}
+      <div className="absolute inset-x-0 top-0 h-4 bg-[repeating-linear-gradient(90deg,#1c1c1c_0_3px,#141414_3px_6px)]" />
+      {/* Cierre zip */}
+      <div className="absolute inset-x-3 top-7 h-1.5 rounded-full bg-[#262626] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]" />
+      {/* Sticker */}
+      <img
+        src={sticker}
+        alt={`Sticker de Mishón ${nombre}`}
+        className="absolute left-1/2 top-[18%] -translate-x-1/2 w-[74%] rounded-md shadow-[0_2px_6px_rgba(0,0,0,0.5)]"
+      />
+      {/* Brillo del plástico */}
+      <div className="absolute inset-0 bg-[linear-gradient(105deg,transparent_25%,rgba(255,255,255,0.07)_38%,transparent_52%)] pointer-events-none" />
+      {/* Fuelle de abajo */}
+      <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-black/40 to-transparent" />
+    </div>
+  );
+}
 
 export default function PackagingCarousel() {
   const [index, setIndex] = useState(0);
@@ -70,29 +84,17 @@ export default function PackagingCarousel() {
             <li
               key={s.nombre}
               aria-hidden={i !== index}
-              className={`relative w-full shrink-0 h-[320px] md:h-[420px] ${s.fondo}`}
+              className={`w-full shrink-0 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-14 px-14 py-10 min-h-[460px] ${s.fondo}`}
             >
-              {s.foto ? (
-                <img
-                  src={s.foto}
-                  alt={`Packaging de Mishón ${s.nombre}`}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              ) : (
-                <img
-                  src={s.gato}
-                  alt=""
-                  className="absolute bottom-8 left-1/2 -translate-x-1/2 w-32 md:w-44"
-                />
-              )}
-              <div className="absolute top-6 left-6 md:top-10 md:left-10 text-left">
+              <div className="text-center md:text-left max-w-xs">
                 <h3 className="font-display font-extrabold uppercase text-2xl md:text-4xl text-negro">
                   {s.nombre}
                 </h3>
-                <p className="text-negro/80 text-sm md:text-base mt-1 max-w-xs">
+                <p className="text-negro/80 text-sm md:text-base mt-1">
                   {s.desc}
                 </p>
               </div>
+              <Bolsa sticker={s.sticker} nombre={s.nombre} />
             </li>
           ))}
         </ul>
@@ -129,8 +131,8 @@ export default function PackagingCarousel() {
           />
         ))}
       </div>
-      <p className="text-xs text-negro/50 mt-3">
-        Fotos del packaging real, próximamente.
+      <p className="text-sm text-negro/60 mt-3">
+        Bolsas negras con cierre zip, y un sticker distinto para cada café.
       </p>
     </div>
   );
