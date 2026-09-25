@@ -58,17 +58,17 @@ const RESULTADOS: Record<
   molido: {
     titulo: "Café molido",
     desc: "Vas directo al grano (literal). Práctico, de todos los días, sin vueltas.",
-    clase: "bg-lima text-negro border-negro",
+    clase: "bg-verde text-negro border-negro",
   },
   grano: {
     titulo: "Café en grano",
     desc: "Te gusta el proceso tanto como el resultado. Lo molés vos, a tu manera.",
-    clase: "bg-tomate text-crema border-crema",
+    clase: "bg-rojo text-crema border-crema",
   },
   origen: {
     titulo: "Origen único",
     desc: "Buscás algo con carácter, no lo de siempre.",
-    clase: "bg-azul text-crema border-crema",
+    clase: "bg-mostaza text-negro border-negro",
   },
 };
 

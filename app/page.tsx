@@ -2,49 +2,52 @@
 
 import { useState, FormEvent } from "react";
 import CoffeeQuiz from "./components/CoffeeQuiz";
+import PackagingCarousel from "./components/PackagingCarousel";
 
 const TIENDA = [
   {
     nombre: "Café molido",
-    desc: "Para cafetera, prensa francesa, lo que tengas.",
-    clase: "bg-lima text-negro border-crema",
+    desc: "Nos decís qué cafetera usás y lo molemos a pedido.",
+    clase: "bg-verde text-negro border-crema",
+    gato: "/gatotaza-negro.png",
   },
   {
     nombre: "Café en grano",
     desc: "Lo molés vos, al toque, como más te guste.",
-    clase: "bg-tomate text-crema border-crema",
+    clase: "bg-rojo text-crema border-crema",
+    gato: "/gatotaza-crema.png",
   },
   {
     nombre: "Origen único",
     desc: "Un solo origen, perfil bien marcado.",
-    clase: "bg-azul text-crema border-crema",
+    clase: "bg-mostaza text-negro border-crema",
+    gato: "/gatotaza-amarillo.png",
   },
 ];
 
-const PACKAGING = ["Molido", "En granos", "Origen único"];
+const PASOS = [
+  {
+    titulo: "Elegís tu café",
+    desc: "En grano, molido u origen único.",
+  },
+  {
+    titulo: "Nos decís tu cafetera",
+    desc: "Italiana, prensa francesa, filtro, espresso… la que tengas.",
+  },
+  {
+    titulo: "Lo molemos a pedido",
+    desc: "Recién molido, justo para tu cafetera, y te lo mandamos.",
+  },
+];
 
-function Estrella({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 120 120"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label="Logo de Mishón"
-    >
-      <polygon
-        points="60,6 74,42 112,42 81,64 93,102 60,79 27,102 39,64 8,42 46,42"
-        fill="#F7F3EC"
-        stroke="#1A1A1A"
-        strokeWidth="4"
-        strokeLinejoin="round"
-      />
-      <circle cx="49" cy="56" r="4.5" fill="#1A1A1A" />
-      <circle cx="73" cy="56" r="4.5" fill="#1A1A1A" />
-      <line x1="46" y1="75" x2="66" y2="75" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" />
-    </svg>
-  );
-}
+// Historias de ejemplo. Cuando la gente empiece a subir las suyas,
+// poné la captura en /public y cargá la ruta en "foto".
+const HISTORIAS: { fondo: string; gato: string; foto?: string }[] = [
+  { fondo: "bg-verde", gato: "/gatotaza-negro.png" },
+  { fondo: "bg-amarillo", gato: "/gatotaza-rojo.png" },
+  { fondo: "bg-mostaza", gato: "/gatotaza-crema.png" },
+  { fondo: "bg-crema", gato: "/gatotaza-verdelima.png" },
+];
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -61,7 +64,7 @@ export default function Home() {
     <>
       {/* Header */}
       <header className="flex items-center justify-between px-6 md:px-14 py-7">
-        <span className="font-wordmark text-2xl">Mishón</span>
+        <img src="/mishon-negro.png" alt="Mishón" className="h-8 md:h-10 w-auto" />
         <nav>
           <a
             href="#tienda"
@@ -73,11 +76,18 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section className="bg-lima px-6 md:px-14 pt-6 pb-16 text-center">
-        <Estrella className="w-28 md:w-36 mx-auto animate-wobble" />
-        <p className="max-w-xl mx-auto mt-6 text-lg md:text-xl">
-          Mishón es café de especialidad argentino, en grano y molido,
-          pensado para la gente que se prepara su café en casa.
+      <section className="bg-amarillo px-6 md:px-14 pt-6 pb-16 text-center">
+        <img
+          src="/gatotaza-mostaza.png"
+          alt="GatoTaza, la mascota de Mishón"
+          className="w-32 md:w-40 mx-auto animate-wobble"
+        />
+        <h1 className="font-display font-extrabold text-3xl md:text-5xl mt-6">
+          El café para tu cafetera
+        </h1>
+        <p className="max-w-xl mx-auto mt-4 text-lg md:text-xl">
+          Mishón es café de especialidad argentino. Vos lo comprás, nos
+          decís para qué cafetera lo querés y nosotros lo molemos a pedido.
         </p>
 
         {!enviado ? (
@@ -99,7 +109,7 @@ export default function Home() {
             />
             <button
               type="submit"
-              className="px-6 py-3 rounded-full border-2 border-negro bg-tomate text-crema font-button font-bold hover:bg-negro transition-colors"
+              className="px-6 py-3 rounded-full border-2 border-negro bg-rojo text-crema font-button font-bold hover:bg-negro transition-colors"
             >
               Avisame primero
             </button>
@@ -114,21 +124,82 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Sección Mona */}
-      <section className="bg-tomate text-crema px-6 md:px-14 py-16">
-        <p className="font-wordmark text-2xl tracking-wide uppercase mb-6">
-          Mishón
-        </p>
-        <div className="grid md:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
-          <div className="aspect-[3/4] max-w-[260px] mx-auto w-full rounded-3xl border-2 border-dashed border-crema/60 flex items-center justify-center text-center text-sm text-crema/70 p-6">
-            Acá va la ilustración de Mona — exportala de Canva como PNG
-            (fondo transparente) a /public/mona.png y reemplazá este bloque
-            por &lt;Image src=&quot;/mona.png&quot; /&gt;
-          </div>
-          <h2 className="font-display font-extrabold text-2xl md:text-4xl leading-tight text-left">
+      {/* Cómo funciona */}
+      <section className="max-w-5xl mx-auto px-6 md:px-14 py-16">
+        <h2 className="font-display font-extrabold text-3xl md:text-4xl mb-10 text-center">
+          Molido a pedido, para tu cafetera
+        </h2>
+        <ol className="grid sm:grid-cols-3 gap-6">
+          {PASOS.map((paso, i) => (
+            <li
+              key={paso.titulo}
+              className="rounded-3xl border-2 border-negro bg-crema p-6"
+            >
+              <span className="w-10 h-10 rounded-full bg-mostaza text-negro font-display font-extrabold text-xl flex items-center justify-center mb-4">
+                {i + 1}
+              </span>
+              <h3 className="font-display font-bold text-lg mb-1">
+                {paso.titulo}
+              </h3>
+              <p className="text-sm text-negro/80">{paso.desc}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* Historias de Instagram */}
+      <section className="bg-rojo text-crema px-6 md:px-14 py-16">
+        <div className="max-w-5xl mx-auto">
+          <img src="/mishon-crema.png" alt="Mishón" className="h-10 md:h-12 w-auto mb-6" />
+          <h2 className="font-display font-extrabold text-2xl md:text-4xl leading-tight max-w-3xl">
             Mishón arranca con dos formatos — molido y en grano — y un solo
             objetivo: que tomes un café bueno en tu casa, sin vueltas.
           </h2>
+          <p className="mt-6 max-w-xl text-crema/90">
+            ¿Ya tenés tu Mishón? Subí una historia con tu café y etiquetanos en{" "}
+            <a
+              href="https://instagram.com/mishoncafe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold underline underline-offset-4"
+            >
+              @mishoncafe
+            </a>
+            . Las mejores aparecen acá.
+          </p>
+
+          <ul className="mt-10 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-4 md:overflow-visible">
+            {HISTORIAS.map((h, i) => (
+              <li
+                key={i}
+                className={`relative shrink-0 w-44 md:w-auto aspect-[9/16] snap-start rounded-2xl overflow-hidden border-2 border-crema text-negro ${h.fondo}`}
+              >
+                {h.foto ? (
+                  <img src={h.foto} alt="Historia de Instagram con café Mishón" className="absolute inset-0 w-full h-full object-cover" />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-4 text-center">
+                    <img src={h.gato} alt="" className="w-20" />
+                    <span className="text-xs font-semibold">Tu historia acá</span>
+                  </div>
+                )}
+                {/* Barra de progreso y usuario, como en una historia */}
+                <div className="absolute inset-x-0 top-0 p-2.5 bg-gradient-to-b from-negro/40 to-transparent">
+                  <div className="h-0.5 rounded-full bg-crema/50 overflow-hidden">
+                    <div className="h-full w-2/3 bg-crema" />
+                  </div>
+                  <div className="mt-2 flex items-center gap-1.5 text-crema text-[11px] font-semibold">
+                    <span className="w-5 h-5 rounded-full bg-crema border border-crema overflow-hidden">
+                      <img src="/gatotaza-negro.png" alt="" className="w-full h-full object-contain" />
+                    </span>
+                    tu_usuario
+                  </div>
+                </div>
+                <span className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-crema text-negro text-[11px] font-bold px-2 py-1 shadow">
+                  @mishoncafe
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -147,7 +218,7 @@ export default function Home() {
               key={item.nombre}
               className={`rounded-3xl border-2 p-6 min-h-[170px] flex flex-col justify-between ${item.clase}`}
             >
-              <Estrella className="w-10 h-10 mb-4 opacity-90" />
+              <img src={item.gato} alt="" className="w-14 h-14 mb-4" />
               <div>
                 <h3 className="font-display font-bold text-lg mb-1">
                   {item.nombre}
@@ -167,44 +238,39 @@ export default function Home() {
         <h2 className="font-display font-extrabold text-2xl md:text-3xl mb-10">
           Para que veas cómo se ven
         </h2>
-        <div className="grid sm:grid-cols-3 gap-5">
-          {PACKAGING.map((nombre) => (
-            <div
-              key={nombre}
-              className="rounded-3xl border-2 border-tomate overflow-hidden"
-            >
-              <div className="h-40 bg-gradient-to-b from-sky-200 to-lima/60 flex items-center justify-center text-xs text-negro/60 px-4 text-center">
-                packaging real pendiente — reemplazar por foto del producto
-              </div>
-              <p className="bg-tomate text-crema font-semibold py-3">
-                {nombre}
-              </p>
-            </div>
-          ))}
-        </div>
+        <PackagingCarousel />
       </section>
 
       {/* Contacto */}
-      <section className="relative bg-azul text-crema px-6 md:px-14 py-20 overflow-hidden">
-        <Estrella className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-72 opacity-10" />
+      <section className="relative bg-amarillo text-negro px-6 md:px-14 py-20 overflow-hidden">
+        <img
+          src="/gatotaza-negro.png"
+          alt=""
+          className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-72 opacity-10"
+        />
         <div className="relative max-w-md mx-auto bg-crema text-negro rounded-3xl p-8 text-center">
           <h2 className="font-display font-extrabold text-2xl mb-3">
             Preguntanos lo que quieras
           </h2>
           <a
-            href="mailto:hola@mishon.com.ar"
-            className="text-tomate font-semibold"
+            href="mailto:mishoncafe@gmail.com"
+            className="text-rojo font-semibold"
           >
-            hola@mishon.com.ar
+            mishoncafe@gmail.com
           </a>
-          <p className="text-xs text-negro/50 mt-2">
-            (mail de ejemplo — reemplazar por el real cuando esté)
-          </p>
+          <a
+            href="https://instagram.com/mishoncafe"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-rojo font-semibold mt-2"
+          >
+            @mishoncafe
+          </a>
         </div>
       </section>
 
       <footer className="bg-negro text-crema px-6 md:px-14 py-8 flex flex-wrap justify-between gap-3 text-sm">
-        <span className="font-wordmark text-xl">Mishón</span>
+        <img src="/mishon-crema.png" alt="Mishón" className="h-7 w-auto" />
         <span>Café de especialidad — próximamente.</span>
       </footer>
     </>

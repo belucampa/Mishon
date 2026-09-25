@@ -27,9 +27,9 @@ const wordmark = Gochi_Hand({
 });
 
 export const metadata: Metadata = {
-  title: "Molida — café de especialidad, ya llega",
+  title: "Mishón — el café para tu cafetera",
   description:
-    "Café de especialidad argentino, en grano y molido, pensado para tomar en casa.",
+    "Café de especialidad argentino. Nos decís qué cafetera usás y lo molemos a pedido.",
 };
 
 export default function RootLayout({

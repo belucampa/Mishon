@@ -6,11 +6,11 @@ const config: Config = {
     extend: {
       colors: {
         crema: "#F7F3EC",
-        lima: "#C6E86B",
-        tomate: "#E24B4A",
-        mostaza: "#EF9F27",
-        negro: "#1A1A1A",
-        azul: "#3E4C59",
+        rojo: "#E24B4A",
+        verde: "#C6E86B",
+        negro: "#212121",
+        amarillo: "#FAEC7F",
+        mostaza: "#ECB92D",
       },
       fontFamily: {
         display: ["var(--font-display)", "serif"],

@@ -4,11 +4,11 @@
 
 :root {
   --crema: #f7f3ec;
-  --lima: #c6e86b;
-  --tomate: #e24b4a;
-  --mostaza: #ef9f27;
-  --negro: #1a1a1a;
-  --azul: #3e4c59;
+  --rojo: #e24b4a;
+  --verde: #c6e86b;
+  --negro: #212121;
+  --amarillo: #faec7f;
+  --mostaza: #ecb92d;
 }
 
 * {
