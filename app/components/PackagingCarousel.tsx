@@ -1,29 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { FONDO, type Sitio } from "@/lib/sitio";
 
 const INTERVALO_MS = 4000;
 
-const SLIDES = [
-  {
-    nombre: "Molido",
-    desc: "Nos decís qué cafetera usás y lo molemos a pedido.",
-    fondo: "bg-verde",
-    sticker: "/packaging/molido.png",
-  },
-  {
-    nombre: "En grano",
-    desc: "Lo molés vos, al toque, como más te guste.",
-    fondo: "bg-rojo",
-    sticker: "/packaging/en-grano.png",
-  },
-  {
-    nombre: "Origen único",
-    desc: "Un solo origen, perfil bien marcado.",
-    fondo: "bg-mostaza",
-    sticker: "/packaging/origen-unico.png",
-  },
-];
 
 // Bolsa negra con cierre zip y el sticker pegado adelante.
 function Bolsa({ sticker, nombre }: { sticker: string; nombre: string }) {
@@ -47,13 +28,19 @@ function Bolsa({ sticker, nombre }: { sticker: string; nombre: string }) {
   );
 }
 
-export default function PackagingCarousel() {
+export default function PackagingCarousel({
+  slides: SLIDES,
+  nota,
+}: {
+  slides: Sitio["packaging"]["slides"];
+  nota: string;
+}) {
   const [index, setIndex] = useState(0);
   const [pausado, setPausado] = useState(false);
   const total = SLIDES.length;
 
   useEffect(() => {
-    if (pausado) return;
+    if (pausado || total < 2) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = setInterval(() => setIndex((i) => (i + 1) % total), INTERVALO_MS);
     return () => clearInterval(id);
@@ -82,9 +69,9 @@ export default function PackagingCarousel() {
         >
           {SLIDES.map((s, i) => (
             <li
-              key={s.nombre}
+              key={i}
               aria-hidden={i !== index}
-              className={`w-full shrink-0 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-14 px-14 py-10 min-h-[460px] ${s.fondo}`}
+              className={`w-full shrink-0 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-14 px-14 py-10 min-h-[460px] ${FONDO[s.fondo]}`}
             >
               <div className="text-center md:text-left max-w-xs">
                 <h3 className="font-display font-extrabold uppercase text-2xl md:text-4xl text-negro">
@@ -120,7 +107,7 @@ export default function PackagingCarousel() {
       <div className="flex justify-center gap-2 mt-5">
         {SLIDES.map((s, i) => (
           <button
-            key={s.nombre}
+            key={i}
             type="button"
             onClick={() => setIndex(i)}
             aria-label={`Ver ${s.nombre}`}
@@ -132,7 +119,7 @@ export default function PackagingCarousel() {
         ))}
       </div>
       <p className="text-sm text-negro/60 mt-3">
-        Bolsas negras con cierre zip, y un sticker distinto para cada café.
+        {nota}
       </p>
     </div>
   );

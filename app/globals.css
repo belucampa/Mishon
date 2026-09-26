@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --crema: #f7f3ec;
-  --rojo: #e24b4a;
-  --verde: #c6e86b;
-  --negro: #212121;
-  --amarillo: #faec7f;
-  --mostaza: #ecb92d;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -32,8 +23,8 @@ html {
 
 body {
   margin: 0;
-  background: var(--crema);
-  color: var(--negro);
+  background: theme("colors.crema");
+  color: theme("colors.negro");
 }
 
 @keyframes wobble {

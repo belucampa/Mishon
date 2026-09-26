@@ -1,0 +1,145 @@
+{
+  "general": {
+    "tituloPestana": "Mishón — el café para tu cafetera",
+    "descripcion": "Café de especialidad argentino. Nos decís qué cafetera usás y lo molemos a pedido."
+  },
+  "colores": {
+    "crema": "#F7F3EC",
+    "rojo": "#E24B4A",
+    "verde": "#C6E86B",
+    "negro": "#212121",
+    "amarillo": "#FAEC7F",
+    "mostaza": "#ECB92D"
+  },
+  "encabezado": {
+    "logo": "/mishon-negro.png",
+    "link": "Cómo va a ser la tienda"
+  },
+  "inicio": {
+    "fondo": "amarillo",
+    "imagen": "/gatotaza-mostaza.png",
+    "eslogan": "El café para tu cafetera",
+    "colorEslogan": "mostaza",
+    "texto": "Mishón es café de especialidad argentino. Vos lo comprás, nos decís para qué cafetera lo querés y nosotros lo molemos a pedido.",
+    "placeholderEmail": "tu@email.com",
+    "boton": "Avisame primero",
+    "gracias": "Listo, quedaste anotada/o. Te avisamos apenas abramos.",
+    "nota": "Sin spam. Te escribimos una sola vez, cuando esté lista para comprar."
+  },
+  "comoFunciona": {
+    "titulo": "Molido a pedido, para tu cafetera",
+    "pasos": [
+      { "titulo": "Elegís tu café", "desc": "En grano, molido u origen único." },
+      { "titulo": "Nos decís tu cafetera", "desc": "Italiana, prensa francesa, filtro, espresso… la que tengas." },
+      { "titulo": "Lo molemos a pedido", "desc": "Recién molido, justo para tu cafetera, y te lo mandamos." }
+    ]
+  },
+  "historias": {
+    "fondo": "rojo",
+    "logo": "/mishon-crema.png",
+    "titulo": "Mishón arranca con dos formatos — molido y en grano — y un solo objetivo: que tomes un café bueno en tu casa, sin vueltas.",
+    "texto": "¿Ya tenés tu Mishón? Subí una historia con tu café y etiquetanos en @mishoncafe. Las mejores aparecen acá.",
+    "items": [
+      { "fondo": "verde", "gato": "/gatotaza-negro.png", "foto": "" },
+      { "fondo": "amarillo", "gato": "/gatotaza-rojo.png", "foto": "" },
+      { "fondo": "mostaza", "gato": "/gatotaza-crema.png", "foto": "" },
+      { "fondo": "crema", "gato": "/gatotaza-verdelima.png", "foto": "" }
+    ]
+  },
+  "tienda": {
+    "titulo": "Así va a ser la tienda",
+    "texto": "La landing es el primer paso. Esto es lo que se viene cuando abramos la tienda completa.",
+    "items": [
+      { "nombre": "Café molido", "desc": "Nos decís qué cafetera usás y lo molemos a pedido.", "fondo": "verde", "gato": "/gatotaza-negro.png" },
+      { "nombre": "Café en grano", "desc": "Lo molés vos, al toque, como más te guste.", "fondo": "rojo", "gato": "/gatotaza-crema.png" },
+      { "nombre": "Origen único", "desc": "Un solo origen, perfil bien marcado.", "fondo": "mostaza", "gato": "/gatotaza-amarillo.png" }
+    ]
+  },
+  "quiz": {
+    "titulo": "No sé cuál elegir",
+    "subtitulo": "No te preocupes, así lo solucionamos.",
+    "preguntas": [
+      {
+        "texto": "¿Dónde te irías de vacaciones hoy?",
+        "emoji": false,
+        "opciones": [
+          { "texto": "Una casita en un lugar frío", "valor": "origen" },
+          { "texto": "Un paraíso tropical", "valor": "molido" },
+          { "texto": "Una selva", "valor": "grano" }
+        ]
+      },
+      {
+        "texto": "¿A quién te llevarías?",
+        "emoji": false,
+        "opciones": [
+          { "texto": "A mis amigos", "valor": "molido" },
+          { "texto": "A mi familia", "valor": "origen" },
+          { "texto": "A un desconocido", "valor": "grano" }
+        ]
+      },
+      {
+        "texto": "¿Cómo te gustaría tomar tu café?",
+        "emoji": false,
+        "opciones": [
+          { "texto": "Frío", "valor": "grano" },
+          { "texto": "Caliente", "valor": "molido" },
+          { "texto": "Como venga", "valor": "origen" }
+        ]
+      },
+      {
+        "texto": "Elegí un emoji sin pensar",
+        "emoji": true,
+        "opciones": [
+          { "texto": "🌊", "valor": "molido" },
+          { "texto": "🔥", "valor": "origen" },
+          { "texto": "🌙", "valor": "grano" }
+        ]
+      },
+      {
+        "texto": "Si tuvieras que elegir una playlist ahora, sería...",
+        "emoji": false,
+        "opciones": [
+          { "texto": "Para bailar en la cocina", "valor": "molido" },
+          { "texto": "Para concentrarte", "valor": "grano" },
+          { "texto": "Para no pensar en nada", "valor": "origen" }
+        ]
+      }
+    ],
+    "resultados": {
+      "molido": {
+        "titulo": "Café molido",
+        "desc": "Vas directo al grano (literal). Práctico, de todos los días, sin vueltas.",
+        "fondo": "verde"
+      },
+      "grano": {
+        "titulo": "Café en grano",
+        "desc": "Te gusta el proceso tanto como el resultado. Lo molés vos, a tu manera.",
+        "fondo": "rojo"
+      },
+      "origen": {
+        "titulo": "Origen único",
+        "desc": "Buscás algo con carácter, no lo de siempre.",
+        "fondo": "mostaza"
+      }
+    }
+  },
+  "packaging": {
+    "titulo": "Para que veas cómo se ven",
+    "nota": "Bolsas negras con cierre zip, y un sticker distinto para cada café.",
+    "slides": [
+      { "nombre": "Molido", "desc": "Nos decís qué cafetera usás y lo molemos a pedido.", "fondo": "verde", "sticker": "/packaging/molido.png" },
+      { "nombre": "En grano", "desc": "Lo molés vos, al toque, como más te guste.", "fondo": "rojo", "sticker": "/packaging/en-grano.png" },
+      { "nombre": "Origen único", "desc": "Un solo origen, perfil bien marcado.", "fondo": "mostaza", "sticker": "/packaging/origen-unico.png" }
+    ]
+  },
+  "contacto": {
+    "fondo": "amarillo",
+    "titulo": "Preguntanos lo que quieras",
+    "email": "mishoncafe@gmail.com",
+    "instagram": "mishoncafe"
+  },
+  "pie": {
+    "logo": "/mishon-crema.png",
+    "texto": "Café de especialidad — próximamente."
+  }
+}

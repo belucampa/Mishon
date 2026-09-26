@@ -1,78 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { FONDO, esOscuro, textoSobre, type Categoria, type Sitio } from "@/lib/sitio";
 
-type Categoria = "molido" | "grano" | "origen";
-
-type Opcion = { texto: string; valor: Categoria };
-type Pregunta = { texto: string; opciones: Opcion[]; emoji?: boolean };
-
-const PREGUNTAS: Pregunta[] = [
-  {
-    texto: "¿Dónde te irías de vacaciones hoy?",
-    opciones: [
-      { texto: "Una casita en un lugar frío", valor: "origen" },
-      { texto: "Un paraíso tropical", valor: "molido" },
-      { texto: "Una selva", valor: "grano" },
-    ],
-  },
-  {
-    texto: "¿A quién te llevarías?",
-    opciones: [
-      { texto: "A mis amigos", valor: "molido" },
-      { texto: "A mi familia", valor: "origen" },
-      { texto: "A un desconocido", valor: "grano" },
-    ],
-  },
-  {
-    texto: "¿Cómo te gustaría tomar tu café?",
-    opciones: [
-      { texto: "Frío", valor: "grano" },
-      { texto: "Caliente", valor: "molido" },
-      { texto: "Como venga", valor: "origen" },
-    ],
-  },
-  {
-    texto: "Elegí un emoji sin pensar",
-    emoji: true,
-    opciones: [
-      { texto: "🌊", valor: "molido" },
-      { texto: "🔥", valor: "origen" },
-      { texto: "🌙", valor: "grano" },
-    ],
-  },
-  {
-    texto: "Si tuvieras que elegir una playlist ahora, sería...",
-    opciones: [
-      { texto: "Para bailar en la cocina", valor: "molido" },
-      { texto: "Para concentrarte", valor: "grano" },
-      { texto: "Para no pensar en nada", valor: "origen" },
-    ],
-  },
-];
-
-const RESULTADOS: Record<
-  Categoria,
-  { titulo: string; desc: string; clase: string }
-> = {
-  molido: {
-    titulo: "Café molido",
-    desc: "Vas directo al grano (literal). Práctico, de todos los días, sin vueltas.",
-    clase: "bg-verde text-negro border-negro",
-  },
-  grano: {
-    titulo: "Café en grano",
-    desc: "Te gusta el proceso tanto como el resultado. Lo molés vos, a tu manera.",
-    clase: "bg-rojo text-crema border-crema",
-  },
-  origen: {
-    titulo: "Origen único",
-    desc: "Buscás algo con carácter, no lo de siempre.",
-    clase: "bg-mostaza text-negro border-negro",
-  },
-};
-
-export default function CoffeeQuiz() {
+export default function CoffeeQuiz({ quiz }: { quiz: Sitio["quiz"] }) {
+  const PREGUNTAS = quiz.preguntas.filter((p) => p.opciones.length > 0);
   const [paso, setPaso] = useState(0);
   const [respuestas, setRespuestas] = useState<Categoria[]>([]);
 
@@ -96,15 +28,16 @@ export default function CoffeeQuiz() {
   }
 
   const terminado = paso >= PREGUNTAS.length;
+  const resultado = quiz.resultados[calcularResultado()];
   const preguntaActual = PREGUNTAS[paso];
 
   return (
     <section className="max-w-xl mx-auto px-6 py-16 text-center">
       <h2 className="font-display text-3xl md:text-4xl font-extrabold mb-2">
-        No sé cuál elegir
+        {quiz.titulo}
       </h2>
       <p className="text-negro/70 mb-8">
-        No te preocupes, así lo solucionamos.
+        {quiz.subtitulo}
       </p>
 
       {!terminado ? (
@@ -118,9 +51,9 @@ export default function CoffeeQuiz() {
 
           {preguntaActual.emoji ? (
             <div className="flex justify-center gap-6">
-              {preguntaActual.opciones.map((op) => (
+              {preguntaActual.opciones.map((op, i) => (
                 <button
-                  key={op.texto}
+                  key={i}
                   onClick={() => elegir(op.valor)}
                   aria-label={op.texto}
                   className="text-5xl border-2 border-negro rounded-full w-20 h-20 flex items-center justify-center hover:bg-negro/10 transition-colors"
@@ -131,9 +64,9 @@ export default function CoffeeQuiz() {
             </div>
           ) : (
             <div className="flex flex-col gap-3">
-              {preguntaActual.opciones.map((op) => (
+              {preguntaActual.opciones.map((op, i) => (
                 <button
-                  key={op.texto}
+                  key={i}
                   onClick={() => elegir(op.valor)}
                   className="border-2 border-negro rounded-full py-3 px-5 font-semibold hover:bg-negro hover:text-crema transition-colors"
                 >
@@ -145,13 +78,13 @@ export default function CoffeeQuiz() {
         </div>
       ) : (
         <div
-          className={`border-2 rounded-3xl p-8 ${RESULTADOS[calcularResultado()].clase}`}
+          className={`border-2 rounded-3xl p-8 ${FONDO[resultado.fondo]} ${textoSobre(resultado.fondo)} ${esOscuro(resultado.fondo) ? "border-crema" : "border-negro"}`}
         >
           <p className="text-sm font-semibold opacity-70 mb-2">Tu café es</p>
           <h3 className="font-display text-2xl font-extrabold mb-3">
-            {RESULTADOS[calcularResultado()].titulo}
+            {resultado.titulo}
           </h3>
-          <p className="mb-6">{RESULTADOS[calcularResultado()].desc}</p>
+          <p className="mb-6">{resultado.desc}</p>
           <button
             onClick={reiniciar}
             className="border-2 border-current rounded-full py-2 px-5 font-semibold hover:opacity-80 transition-opacity"

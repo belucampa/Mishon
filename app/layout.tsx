@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Poppins, Space_Grotesk, Gochi_Hand } from "next/font/google";
 import "./globals.css";
+import { sitio } from "@/lib/sitio";
 
 const display = Fraunces({
   subsets: ["latin"],
@@ -27,9 +28,8 @@ const wordmark = Gochi_Hand({
 });
 
 export const metadata: Metadata = {
-  title: "Mishón — el café para tu cafetera",
-  description:
-    "Café de especialidad argentino. Nos decís qué cafetera usás y lo molemos a pedido.",
+  title: sitio.general.tituloPestana,
+  description: sitio.general.descripcion,
 };
 
 export default function RootLayout({

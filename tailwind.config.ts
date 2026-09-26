@@ -1,17 +1,12 @@
 import type { Config } from "tailwindcss";
+import sitio from "./content/sitio.json";
 
 const config: Config = {
-  content: ["./app/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "./lib/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      colors: {
-        crema: "#F7F3EC",
-        rojo: "#E24B4A",
-        verde: "#C6E86B",
-        negro: "#212121",
-        amarillo: "#FAEC7F",
-        mostaza: "#ECB92D",
-      },
+      // Los colores se editan desde el panel (content/sitio.json).
+      colors: sitio.colores,
       fontFamily: {
         display: ["var(--font-display)", "serif"],
         body: ["var(--font-body)", "sans-serif"],
