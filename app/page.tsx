@@ -61,14 +61,16 @@ export default function Home() {
   return (
     <>
       {/* Header */}
-      <header className="flex items-center justify-between px-6 md:px-14 py-7">
+      <header className="flex items-center justify-between gap-4 px-6 md:px-14 py-7">
         <img src={encabezado.logo} alt="Mishón" className="h-8 md:h-10 w-auto" />
         <nav className="flex items-center gap-3 sm:gap-5">
           <a
             href="#tienda"
-            className="text-sm font-semibold border-b-2 border-transparent hover:border-negro transition-colors"
+            className="text-sm font-semibold whitespace-nowrap border-b-2 border-transparent hover:border-negro transition-colors"
           >
-            {encabezado.link}
+            {/* En el celu no entra el texto largo al lado del botón. */}
+            <span className="sm:hidden">La tienda</span>
+            <span className="hidden sm:inline">{encabezado.link}</span>
           </a>
           <EnlaceCuenta />
         </nav>
