@@ -1,8 +1,18 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { COOKIE_SESION, panelConfigurado, sesionValida } from "@/lib/sesion";
+import { exigirSesion } from "@/lib/supabase/middleware";
 
-// Todo lo de /admin y /api/admin pide sesión, menos la pantalla de login.
 export async function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+  if (pathname.startsWith("/admin") || pathname.startsWith("/api/admin")) {
+    return panelDeEdicion(req);
+  }
+  // /cuenta y /gestion piden haber iniciado sesión. El rol lo revisa cada página.
+  return exigirSesion(req);
+}
+
+// Todo lo de /admin y /api/admin pide la contraseña del panel, menos la pantalla de login.
+async function panelDeEdicion(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const esLogin = pathname === "/admin/login" || pathname === "/api/admin/login";
   if (esLogin) return NextResponse.next();
@@ -17,5 +27,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/admin/:path*"],
+  matcher: ["/admin/:path*", "/api/admin/:path*", "/cuenta/:path*", "/gestion/:path*"],
 };

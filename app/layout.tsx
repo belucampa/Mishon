@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Poppins, Space_Grotesk, Gochi_Hand } from "next/font/google";
 import "./globals.css";
 import { sitio } from "@/lib/sitio";
@@ -30,6 +30,13 @@ const wordmark = Gochi_Hand({
 export const metadata: Metadata = {
   title: sitio.general.tituloPestana,
   description: sitio.general.descripcion,
+};
+
+// "only light": los navegadores del celu no oscurecen la página por su cuenta.
+// themeColor pinta la barra del navegador con el crema de la página.
+export const viewport: Viewport = {
+  colorScheme: "only light",
+  themeColor: sitio.colores.crema,
 };
 
 export default function RootLayout({

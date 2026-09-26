@@ -8,6 +8,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* La paleta de Mishón es una sola: que el modo oscuro del celu no la invierta. */
+  color-scheme: only light;
 }
 
 @media (prefers-reduced-motion: reduce) {

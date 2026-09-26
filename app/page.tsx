@@ -3,6 +3,8 @@
 import { useState, FormEvent } from "react";
 import CoffeeQuiz from "./components/CoffeeQuiz";
 import PackagingCarousel from "./components/PackagingCarousel";
+import EnlaceCuenta from "./components/EnlaceCuenta";
+import VolverArriba from "./components/VolverArriba";
 import { sitio, FONDO, TEXTO, textoSobre } from "@/lib/sitio";
 
 // Convierte cada "@usuario" del texto en un link a su Instagram.
@@ -33,13 +35,27 @@ function ConLinkInstagram({ texto, usuario }: { texto: string; usuario: string }
 export default function Home() {
   const [email, setEmail] = useState("");
   const [enviado, setEnviado] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+  const [error, setError] = useState("");
   const { encabezado, inicio, comoFunciona, historias, tienda, packaging, contacto, pie } = sitio;
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    // TODO: conectar a Supabase (tabla de waitlist) cuando esté el esquema listo.
-    setEnviado(true);
-    setEmail("");
+    setEnviando(true);
+    setError("");
+    const res = await fetch("/api/lista-espera", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    }).catch(() => null);
+    setEnviando(false);
+    if (res?.ok) {
+      setEnviado(true);
+      setEmail("");
+      return;
+    }
+    const json = await res?.json().catch(() => ({}));
+    setError(json?.error || "No pudimos anotarte. Probá de nuevo en un rato.");
   }
 
   return (
@@ -47,13 +63,14 @@ export default function Home() {
       {/* Header */}
       <header className="flex items-center justify-between px-6 md:px-14 py-7">
         <img src={encabezado.logo} alt="Mishón" className="h-8 md:h-10 w-auto" />
-        <nav>
+        <nav className="flex items-center gap-3 sm:gap-5">
           <a
             href="#tienda"
             className="text-sm font-semibold border-b-2 border-transparent hover:border-negro transition-colors"
           >
             {encabezado.link}
           </a>
+          <EnlaceCuenta />
         </nav>
       </header>
 
@@ -92,10 +109,16 @@ export default function Home() {
             />
             <button
               type="submit"
-              className="px-6 py-3 rounded-full border-2 border-negro bg-rojo text-crema font-button font-bold hover:bg-negro transition-colors"
+              disabled={enviando}
+              className="px-6 py-3 rounded-full border-2 border-negro bg-rojo text-crema font-button font-bold hover:bg-negro transition-colors disabled:opacity-60"
             >
               {inicio.boton}
             </button>
+            {error && (
+              <p role="alert" className="w-full font-semibold text-sm">
+                {error}
+              </p>
+            )}
           </form>
         ) : (
           <p className="mt-8 font-semibold">{inicio.gracias}</p>
@@ -233,6 +256,8 @@ export default function Home() {
         <img src={pie.logo} alt="Mishón" className="h-7 w-auto" />
         <span>{pie.texto}</span>
       </footer>
+
+      <VolverArriba />
     </>
   );
 }
